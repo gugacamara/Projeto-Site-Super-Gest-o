@@ -1,5 +1,5 @@
 {{ $slot }}
-<form action = "{{ route('site.contato') }}" method="post">
+<form class="formulario" action = "{{ route('site.contato') }}" method="post">
     @csrf
     <input name="nome" value="{{ old('nome') }}" type="text" placeholder = "Nome" class = {{ $classe }}>
     @if( $errors->has('nome') )
@@ -21,8 +21,7 @@
     </select>
     {{ $errors->first('motivo_contatos_id') ? $errors->first('motivo_contatos_id') : '' }}
     <br>
-    <textarea name = "mensagem" class = {{ $classe }}> {{ (old('mensagem') != '') ? old('mensagem') : 'Preencha aqui a sua mensagem' }}
-    </textarea>
+    <textarea name = "mensagem" placeholder="Preencha sua mensagem aqui" class = {{ $classe }}>{{ (old('mensagem') != '') ? old('mensagem') : '' }}</textarea>
     {{ $errors->first('mensagem') ? $errors->first('mensagem') : '' }}
     <br>
     <button type = "submit" class = {{ $classe }}>ENVIAR</button>

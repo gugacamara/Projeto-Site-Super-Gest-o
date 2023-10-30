@@ -14,26 +14,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 // A ordem middleware, get e name não importa, porém a ordem seria essa.
-Route::get('/', 'PrincipalController@principal')-> name('site.index');
+Route::get('/', 'PrincipalController@principal')
+    //->middleware('log.acesso')
+    -> name('site.index');
 
 Route::get('/sobre-nos', 'SobrenosController@sobrenos') -> name('site.sobrenos');
 
 Route::get('/contato', 'ContatoController@contato')-> name('site.contato');
-
 Route::post('/contato', 'ContatoController@salvar_Dados')-> name('site.contato');
 
-Route::get('/login', function(){return 'Login';})-> name('site.login');
+Route::get('/login/{erro?}', 'LoginController@index')-> name('site.login');
+Route::post('/login', 'LoginController@autenticar')-> name('site.login');
 
-Route::prefix('/app')->group(function(){
-    Route::middleware('autenticacao')
-        ->get('/clientes', function(){return 'Clientes';})
-        -> name('app.clientes');
-    Route::middleware('autenticacao')
-        ->get('/fornecedores', 'FornecedorController@index')
-        -> name('app.fornecedores');
-    Route::middleware('autenticacao')
-        ->get('/produtos', function(){return 'Produtos';})
-        -> name('app.produtos');
+Route::middleware('autenticacao:padrao, visitante')->prefix('/app')->group(function(){
+    Route::get('/home', 'HomeController@index')-> name('app.home');
+    Route::get('/sair', 'LoginController@sair')-> name('app.sair');
+    Route::get('/cliente', 'ClienteController@index')-> name('app.cliente');
+    Route::get('/fornecedor', 'FornecedorController@index')-> name('app.fornecedor');
+    Route::post('/fornecedor/listar', 'FornecedorController@listar')-> name('app.fornecedor.listar');
+    Route::get('/produto', 'ProdutoController@index')-> name('app.produto');
 });
 
 Route::get('/teste/{p1}/{p2}', 'testeController@teste')-> name('teste');

@@ -41,6 +41,13 @@ input, select, textarea, button {
     border: solid 1px #333;
 }
 
+.formulario{
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
 button {
     background-color: #7ab829;
     cursor: pointer;
@@ -155,6 +162,13 @@ button:hover {
 
 .titulo-pagina {
     padding: 100px 0px 60px 0px;
+    background-color: #2a9ee2;
+    text-align: center;
+}
+
+.titulo-pagina-2 {
+    padding: 70px 0px 10px 0px;
+    margin-bottom: 10px;
     background-color: #2a9ee2;
     text-align: center;
 }

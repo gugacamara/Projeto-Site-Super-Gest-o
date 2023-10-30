@@ -24,6 +24,10 @@ class LogAcessoMiddleware
             'log' => "IP $ip requisitou a rota $rota"
         ]);
 
-        return $next($request);
+        // Manipulando a resposta(Response) antes de ser enviada para o middleware
+        $reposta = $next($request);
+        $reposta->setStatusCode(201, 'O status da resposta e o texto da resposta foram modificados');
+        return $reposta;
+
     }
 }
