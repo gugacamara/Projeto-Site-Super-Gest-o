@@ -1,0 +1,18 @@
+version: "3"
+services:
+  mysql_teste:
+    image: mysql:5.7
+    container_name: mysql_teste
+    restart: always
+    command:
+      --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: db_mysql
+      MYSQL_USER: guga
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: devguga
+    ports:
+      - "5000:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+
