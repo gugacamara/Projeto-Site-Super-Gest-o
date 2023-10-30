@@ -37,6 +37,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+           // Habilitando o middleware globalmente para todas as rotas da aplicação
+            \App\Http\Middleware\LogAcessoMiddleware::class
         ],
 
         'api' => [
@@ -63,5 +65,8 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        // Apelidando o middleware para ser usado nas rotas
+        'log.acesso' => \App\Http\Middleware\LogAcessoMiddleware::class,
+        'autenticacao' => \App\Http\Middleware\AutenticacaoMiddleware::class
     ];
 }
