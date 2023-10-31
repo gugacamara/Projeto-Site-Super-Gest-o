@@ -42,7 +42,7 @@ input, select, textarea, button {
 }
 
 .formulario{
-    width: 40%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
@@ -202,3 +202,13 @@ button:hover {
 .redes-sociais img {
     margin: 0px 15px 0px 15px;
 }
+
+.pagination li {
+    display: inline;
+    margin-left: 5px;
+    margin-right: 5px;
+ }
+
+.pagination ul{
+    list-style-type: none;
+ }
