@@ -212,3 +212,8 @@ button:hover {
 .pagination ul{
     list-style-type: none;
  }
+
+.container {
+    display: flex;
+    justify-content: center;
+  }

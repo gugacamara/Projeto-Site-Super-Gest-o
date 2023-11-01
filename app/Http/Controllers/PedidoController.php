@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Facade\FlareClient\Http\Client;
 use Illuminate\Http\Request;
-use App\Cliente;
 
-class ClienteController extends Controller
+class PedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::paginate(10);
-        return view('app.cliente.index', ['clientes' => $clientes, 'request' => $request->all()]);
-
+        //
     }
 
     /**

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Facade\FlareClient\Http\Client;
+use App\Produto;
 use Illuminate\Http\Request;
-use App\Cliente;
+use App\Unidade;
+use App\ProdutoDetalhe;
+use App\ItemDetalhe;
 
-class ClienteController extends Controller
+class ProdutoDetalheController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +17,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::paginate(10);
-        return view('app.cliente.index', ['clientes' => $clientes, 'request' => $request->all()]);
-
+        echo'<h3>Estamos na home de produtos detalhes</h3>';
     }
 
     /**
@@ -27,7 +27,8 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        $unidades = Unidade::all();
+        return view('app.produto_detalhe.create', ['unidades' => $unidades]);
     }
 
     /**
@@ -38,7 +39,8 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ProdutoDetalhe::create($request->all());
+        echo 'Cadastro realizado com sucesso!';
     }
 
     /**
@@ -55,24 +57,27 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Integer  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $produtoDetalhe = ItemDetalhe::with('Item')->find($id);
+        $unidades = Unidade::all();
+        return view('app.produto_detalhe.edit', ['produto_detalhe' => $produtoDetalhe, 'unidades' => $unidades]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\ProdutoDetalhe  $produtoDetalhe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ProdutoDetalhe $produtoDetalhe)
     {
-        //
+        $produtoDetalhe->update($request->all());
+        echo 'Atualização realizada com sucesso!';
     }
 
     /**

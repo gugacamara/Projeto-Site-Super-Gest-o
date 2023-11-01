@@ -13,4 +13,8 @@ class Fornecedor extends Model
     // e assim pode-se usar o tinker
     protected $table = 'fornecedores';
     protected $fillable = ['nome', 'site', 'uf', 'email'];
+
+    public function produtos(){
+        return $this->hasMany('App\Item', 'fornecedor_id', 'id');
+    }
 }

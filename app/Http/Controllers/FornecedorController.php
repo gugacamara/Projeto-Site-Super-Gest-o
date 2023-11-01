@@ -14,7 +14,7 @@ class FornecedorController extends Controller
 
     public function listar(Request $request)
     {
-        $fornecedores = Fornecedor::where(
+        $fornecedores = Fornecedor::with('produtos')->where(
             'nome', 'like', '%'.$request->input('nome').'%')
             ->where(
                 'site', 'like', '%'.$request->input('site').'%')
@@ -22,7 +22,7 @@ class FornecedorController extends Controller
                 'uf', 'like', '%'.$request->input('uf').'%')
             ->where(
                 'email', 'like', '%'.$request->input('email').'%')
-            ->paginate(3);
+            ->paginate(5);
                                                     // enviando o request para ser usado na paginação da view
         return view('app.fornecedor.listar', ['fornecedores' => $fornecedores, 'request' => $request->all()]);
     }
