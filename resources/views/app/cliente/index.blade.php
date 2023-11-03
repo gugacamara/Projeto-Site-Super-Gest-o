@@ -25,36 +25,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($produtos as $produto)
+                    @foreach ($clientes as $cliente)
                         <tr>
-                            <td>{{ $produto->nome }}</td>
-                            <td>{{ $produto->descricao }}</td>
-                            <td>{{ $produto->fornecedor->nome }}</td>
-                            <td>{{ $produto->fornecedor->site }}</td>
-                            <td>{{ $produto->peso }}</td>
-                            <td>{{ $produto->unidade_id }}</td>
-                            <td>{{ $produto->itemDetalhe->comprimento ?? '' }}</td>
-                            <td>{{ $produto->itemDetalhe->largura ?? '' }}</td>
-                            <td>{{ $produto->itemDetalhe->altura ?? ''  }}</td>
-                            {{-- Sem o eloquent, criando array associativo no controller
-                            <td>{{ $produto->comprimento ?? '' }}</td>
-                            <td>{{ $produto->largura ?? '' }}</td>
-                            <td>{{ $produto->altura ?? ''  }}</td> --}}
-                            <td><a href="{{ route('produto.show', ['produto' => $produto->id]) }}">Visualizar</a></td>
+                            <td>{{ $cliente->nome }}</td>
+                            <td><a href="{{ route('cliente.show', ['cliente' => $cliente->id]) }}">Visualizar</a></td>
                             <td>
                                 {{-- Para deletar deve-se criar um form com o método DELETE e o token CSRF --}}
-                                <form id="form_{{$produto->id}}" method="post" action="{{ route('produto.destroy', ['produto' => $produto->id]) }}">
+                                <form id="form_{{$cliente->id}}" method="post" action="{{ route('cliente.destroy', ['cliente' => $cliente->id]) }}">
                                     @method('DELETE')
                                     @csrf
-                                    <a href="#" onclick="document.getElementById('form_{{$produto->id}}').submit()">Excluir</a>
+                                    <a href="#" onclick="document.getElementById('form_{{$cliente->id}}').submit()">Excluir</a>
                                 </form>
                             </td>
-                            <td><a href="{{ route('produto.edit', ['produto'=> $produto->id ]) }}">Editar</a></td>
+                            <td><a href="{{ route('cliente.edit', ['cliente'=> $cliente->id ]) }}">Editar</a></td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-            {{ $produtos->appends($request)->links() }}
-            <p> Exibindo {{ $produtos->count() }} produtos de {{ $produtos->total() }} (de {{ $produtos->firstItem() }} a {{ $produtos->lastItem() }})</p>
+            {{ $clientes->appends($request)->links() }}
+            <p> Exibindo {{ $clientes->count() }} produtos de {{ $clientes->total() }} (de {{ $clientes->firstItem() }} a {{ $clientes->lastItem() }})</p>
         </div>
 @endsection

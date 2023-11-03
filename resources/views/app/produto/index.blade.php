@@ -56,6 +56,17 @@
                             </td>
                             <td><a href="{{ route('produto.edit', ['produto'=> $produto->id ]) }}">Editar</a></td>
                         </tr>
+                        <tr>
+                            <td colspan="12">
+                                <p>Pedidos Relacionados</p>
+                                @foreach ($produto->pedidos as $pedido)
+                                Pedido: 
+                                    <a href="{{ route('pedido-produto.create', ['pedido' => $pedido->id]) }}">
+                                    {{ $pedido->id }}</a>
+                                    <br>
+                                @endforeach
+                            </td>
+                        </tr>
                     @endforeach
                     </tbody>
                 </table>
